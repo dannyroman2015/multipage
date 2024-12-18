@@ -1,0 +1,11 @@
+<div id="legend6s" class="mx-3 px-3" style="width: 100%; max-width: 1200px;"></div>
+<div id="chart6s" style="width: 100%; max-width: 1200px; margin: 0 auto"></div>
+
+<script>
+  chart6s.append(drawSixSChart({{.s6data}}, {{.s6dates}}, {{.s6areas}})) 
+
+  legend6s.append(Legend(d3.scaleThreshold([1, 2, 3, 4, 5, 6, 7, 8, 9], d3.schemeRdYlGn[10]), {
+    title: "Score Range",
+    tickSize: 0
+  }))
+</script>
