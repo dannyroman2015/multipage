@@ -30,6 +30,19 @@ import (
 // / - Get index page
 // //////////////////////////////////////////////////////////
 func (s *Server) index(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	cur, err := s.mgdb.Collection("coll").Find(context.Background(), bson.M{})
+	if err != nil {
+		panic(err)
+	}
+	defer cur.Close(context.Background())
+	var aa []interface{}
+	if err := cur.All(context.Background(), &aa); err != nil {
+		panic(err)
+	}
+	if len(aa) != 0 {
+		w.Write([]byte("aksdhfka"))
+		return
+	}
 	defaulturlToken, err := r.Cookie("defaulturl")
 	if err != nil {
 		http.Redirect(w, r, "/login", http.StatusSeeOther)
